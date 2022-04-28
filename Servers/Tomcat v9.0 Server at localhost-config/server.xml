@@ -152,7 +152,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
+<<<<<<< Updated upstream
       <Context docBase="UDonMarket" path="/UDonMarket" reloadable="true" source="org.eclipse.jst.jee.server:UDonMarket"/></Host>
+=======
+      <Context docBase="WuDongMarket" path="/WuDongMarket" reloadable="true" source="org.eclipse.jst.jee.server:WuDongMarket"/><Context docBase="WuDongMarket" path="/WuDongMarket" reloadable="true" source="org.eclipse.jst.jee.server:WuDongMarket"/></Host>
+>>>>>>> Stashed changes
     </Engine>
   </Service>
 </Server>
