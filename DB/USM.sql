@@ -43,8 +43,10 @@ COMMIT;
 ALTER TABLE PRODUCT ADD REG_DATE DATE;
 COMMIT;
 
+
+
 create table File_t(
-    product_id number(10,0),
+    product_id number(10,0) PRIMARY KEY,
     File_Name varchar2(50),
     ori_name varchar2(50)
 );
