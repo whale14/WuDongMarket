@@ -19,14 +19,12 @@
         <div id="login_form"><!--로그인 폼-->
         <form>
             <h3 class="login" style="letter-spacing:-1px;">join</h3>
-    
-           
-    
+
             <hr>
-    
+            
             <!-- <span>ID</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">username</p>
-            <input type="text" placeholder="아이디" class="size">
+            <p style="text-align: left; font-size:12px; color:#666">phone_number</p>
+            <input type="text" placeholder="숫자만 입력해 주세요" class="size">
             <p></p>
             </label><!--아이디-->
     
@@ -40,12 +38,12 @@
                 <!-- <span>PW</span> -->
                 <p style="text-align: left; font-size:12px; color:#666">닉네임</p>
                 <input type="Nickname" placeholder="닉네임" class="size">
-            </label><!--비밀번호 확인-->
+            </label><!--닉네임(회원명)-->
     
             <label>
                 <!-- <span>PW</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">지역 / 전화번호</p>
-                <select class="size num1">
+            <p style="text-align: left; font-size:12px; color:#666">지역</p>
+                <select class="size">
                     <option value="1" selected>충청도</option>
                     <option value="2" selected>제주도</option>
                     <option value="3" selected>전라도</option>
@@ -59,8 +57,7 @@
                     <option value="11" selected>경기도</option>
                     <option value="12" selected>강원도</option>
                 </select>
-                <input placeholder="숫자만 입력"  class="size num2" required>
-             </label> <!--전화번호-->
+             </label> <!--지역명-->
     
     
     
