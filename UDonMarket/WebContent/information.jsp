@@ -28,7 +28,7 @@
              
              <div class="kkk">
                  <p class="imsi-category">· <span class="point">아이디</span></p>
-                 <p class="imsi-text">_ z010 8000 3983</p>
+                 <p class="imsi-text">_ 010 8000 3983</p>
                  <p class="imsi-category">· <span class="point">비밀번호</span></p>
                  <p class="imsi-text">_ qwer3543</p>
                  <p class="imsi-category">· <span class="point">지역</span></p>
@@ -43,7 +43,7 @@
 				<a href="#"><div class="imsi-button"> 판매내역 </div></a>
 				<a href="#"><div class="imsi-button"> 채팅내역 </div></a>
 				<a href="#"><div class="imsi-button"> 구매내역</div></a>
-				<a href="#"><div class="imsi-button"> 회원정보 수정</div></a>
+				<a href="userChange.jsp"><div class="imsi-button"> 회원정보 수정</div></a>
 
 			</div>
     	</div>
