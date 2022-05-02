@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+a:link, a:visited, a:hover, a:active {
+	color: #333;
+}
+
+a {
+	text-decoration: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #f5f1ee
+}
+
+.container {
+	padding: 15px 20px;
+}
+
+.header-top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.card-photo {
+	height: 300px;
+	overflow: hidden;
+	border-radius: 30px;
+}
+
+.footer {
+	background-color: #495057
+}
