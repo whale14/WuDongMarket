@@ -31,7 +31,7 @@
 		int result = userDAO.login(user.getMember_ID(), user.getMember_PW());
 		if(result == 1){
 			// 로그인에 성공하면 세션을 부여
-			session.setAttribute("userID", user.getRegion_ID());
+			session.setAttribute("userID", user.getMember_ID());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인 성공')");
