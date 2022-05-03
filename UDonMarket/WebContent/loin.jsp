@@ -24,8 +24,8 @@
             <hr>
             <label>
             <!-- <span>ID</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">Username</p>
-            <input type="text" placeholder="아이디를 입력" class="size">
+            <p style="text-align: left; font-size:12px; color:#666">phone_number</p>
+            <input type="text" placeholder="숫자만 입력해 주세요" class="size">
             <!-- <input type="submit" value="확인"> -->
             <p></p>
             </label>
