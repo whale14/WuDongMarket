@@ -8,7 +8,7 @@ import com.udon.vo.MemberVo;
 public class DAO {
 	public static int insertMember(MemberVo mvo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("udon.insertMember");
+		int result = ss.insert("udon.insertMember", mvo);
 		ss.close();
 		return result;
 	}

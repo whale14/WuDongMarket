@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+/* 기본 설정: 페이지 전체 */
+html, body {height: 100%; overflow: hidden;}
+* {
+    margin: 0;
+    padding: 0;
+}

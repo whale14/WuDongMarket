@@ -1,89 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
- <head>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입</title>
 
-    <meta charset="UTF-8">
-     <title></title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 
-     <link href="./css/main_.css" rel="stylesheet" />
+<style>
+body {
+	min-height: 100vh;
+	background-color: #f5f1ee;
+}
 
-</head>  
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+}
+</style>
+</head>
 
- <body>
+<body>
+	<div class="container">
+		<div class="input-form-backgroud row ">
+			<div class="input-form col-md-12 mx-auto shadow rounded-3">
+				<h4 class="mb-3">회원가입</h4>
+				<form class="validation-form" action="join_ok.jsp" novalidate>
+					<div class="mb-3">
+						<label for="member_id">전화번호</label> <input type="text"
+							class="form-control" id="member_id" placeholder="전화번호"
+							name="member_id" required>
+						<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+					</div>
 
-    <div id="con">
-        <div id="login">
-        <div id="login_form"><!--로그인 폼-->
-        <form action="join_ok.jsp" method="post">
-            <h3 class="login" style="letter-spacing:-1px;">join</h3>
+					<div class="mb-3">
+						<label for="member_pw">비밀번호</label> <input type="password"
+							class="form-control" id="member_pw" placeholder="비밀번호"
+							name="member_pw" required>
+						<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+					</div>
 
-            <hr>
-            
-            <!-- <span>ID</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">phone_number</p>
-            <input type="text" placeholder="숫자만 입력해 주세요" class="size" name="member_id">
-            <p></p>
-            </label><!--아이디-->
-    
-            <label>
-            <!-- <span>PW</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">Password </p>
-            <input type="password" placeholder="비밀번호" class="size" name="member_pw">
-            </label><!--비밀번호-->
-    
-            <label>
-                <!-- <span>PW</span> -->
-                <p style="text-align: left; font-size:12px; color:#666">닉네임</p>
-                <input type="Nickname" placeholder="닉네임" class="size" name="member_name">
-            </label><!--닉네임(회원명)-->
-    
-            <label>
-                <!-- <span>PW</span> -->
-            <p style="text-align: left; font-size:12px; color:#666">지역</p>
-                <select class="size" name="region_id">
-                    <option value="1" selected>충청도</option>
-                    <option value="2" selected>제주도</option>
-                    <option value="3" selected>전라도</option>
-                    <option value="4" selected>인천광역시</option>
-                    <option value="5" selected>울산광역시</option>
-                    <option value="6" selected>서울특별시</option>
-                    <option value="7" selected>부산광역시</option>
-                    <option value="8" selected>대전광역시</option>
-                    <option value="9" selected>광주광역시</option>
-                    <option value="10" selected>경상도</option>
-                    <option value="11" selected>경기도</option>
-                    <option value="12" selected>강원도</option>
-                </select>
-             </label> <!--지역명-->
-    
-    
-    
-    
-    
-        <br>
-            <p>
-                <input type="submit" value="회원가입" class="btn">
-                
-            </p>
-        </form>
-    
-        <hr>
-        <p class="find">
-            <span><a href="loin.jsp" >로그인 페이지로 이동</a></span>
-        </p>
-        </div>
-        <div>
-        </div><!--con-->
-    
-    
-    
-    
+					<div class="mb-3">
+						<label for="member_name">별명</label> <input type="text"
+							class="form-control" id="member_name" placeholder="홍길동"
+							name="member_name" required>
+						<div class="invalid-feedback">별명을 입력해주세요.</div>
+					</div>
 
+					<div class="mb-3">
+						<label for="region_id">지역</label> <select class="form-select"
+							aria-label="Default select example" id="region_id" name="region_id" required>
+							<option value="" selected disabled hidden>지역을 선택하세요</option>
+							<option value="서울특별시">서울특별시</option>
+							<option value="강원도">강원도</option>
+							<option value="경기도">경기도</option>
+							<option value="경상도">경상도</option>
+							<option value="전라도">전라도</option>
+							<option value="제주도">제주도</option>
+							<option value="충청도">충청도</option>
+							<option value="광주광역시">광주광역시</option>
+							<option value="대전광역시">대전광역시</option>
+							<option value="부산광역시">부산광역시</option>
+							<option value="울산광역시">울산광역시</option>
+							<option value="인천광역시">인천광역시</option>
+						</select>
+					</div>
 
+					<hr class="mb-4">
+					<div class="mb-4">
+						<button class="btn btn-primary btn-block" type="submit">가입
+							완료</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<footer class="my-3 text-center text-small">
+			<p class="mb-1">&copy; UDON MARKET</p>
+		</footer>
+	</div>
+	<script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
 
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+    
+    
+  </script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

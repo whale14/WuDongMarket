@@ -10,7 +10,7 @@
 			<a href="index.jsp">우동마켓</a>
 		</div>
 		<div class="header-top-right">
-			<a href="loin.jsp">로그인</a>
+			<a href="login.jsp">로그인</a>
 			
 		</div>
 	</div>
