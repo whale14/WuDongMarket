@@ -16,7 +16,7 @@
     <div id="con">
         <div id="login">
         <div id="login_form"><!--로그인 폼-->
-        <form>
+        <form method="post" action="loginAction.jsp">
             <h3 class="login" style="letter-spacing:-1px;">Login</h3>
     
             
@@ -25,7 +25,7 @@
             <label>
             <!-- <span>ID</span> -->
             <p style="text-align: left; font-size:12px; color:#666">phone_number</p>
-            <input type="text" placeholder="숫자만 입력해 주세요" class="size">
+            <input type="text" placeholder="숫자만 입력해 주세요" class="size" name="member_ID">
             <!-- <input type="submit" value="확인"> -->
             <p></p>
             </label>
@@ -33,7 +33,7 @@
             <label>
             <!-- <span>PW</span> -->
             <p style="text-align: left; font-size:12px; color:#666">Password </p>
-            <input type="text" placeholder="비밀번호를 입력" class="size">
+            <input type="text" placeholder="비밀번호를 입력" class="size" name="member_PW">
             <!-- <input type="submit" value="확인"> -->
             </label>
     
