@@ -17,33 +17,33 @@
     <div id="con">
         <div id="login">
         <div id="login_form"><!--로그인 폼-->
-        <form>
+        <form action="join_ok.jsp" method="post">
             <h3 class="login" style="letter-spacing:-1px;">join</h3>
 
             <hr>
             
             <!-- <span>ID</span> -->
             <p style="text-align: left; font-size:12px; color:#666">phone_number</p>
-            <input type="text" placeholder="숫자만 입력해 주세요" class="size">
+            <input type="text" placeholder="숫자만 입력해 주세요" class="size" name="member_id">
             <p></p>
             </label><!--아이디-->
     
             <label>
             <!-- <span>PW</span> -->
             <p style="text-align: left; font-size:12px; color:#666">Password </p>
-            <input type="password" placeholder="비밀번호" class="size">
+            <input type="password" placeholder="비밀번호" class="size" name="member_pw">
             </label><!--비밀번호-->
     
             <label>
                 <!-- <span>PW</span> -->
                 <p style="text-align: left; font-size:12px; color:#666">닉네임</p>
-                <input type="Nickname" placeholder="닉네임" class="size">
+                <input type="Nickname" placeholder="닉네임" class="size" name="member_name">
             </label><!--닉네임(회원명)-->
     
             <label>
                 <!-- <span>PW</span> -->
             <p style="text-align: left; font-size:12px; color:#666">지역</p>
-                <select class="size">
+                <select class="size" name="region_id">
                     <option value="1" selected>충청도</option>
                     <option value="2" selected>제주도</option>
                     <option value="3" selected>전라도</option>
