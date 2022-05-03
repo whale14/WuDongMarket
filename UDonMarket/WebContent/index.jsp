@@ -21,11 +21,11 @@
 					<a href="#">
 						<div class="card mb-3 border-0">
 							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top rounded"
+								<img src="./img/예시이미지.jpg" class="card-img-top "
 									alt="...">
 							</div>
 							<div
-								class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+								class="card-body d-flex justify-content-between">
 								<h5 class="card-title w-50 text-start bold">제목</h5>
 								<p class="card-text">가격</p>
 								<p class="card-text">
@@ -38,10 +38,10 @@
 				<div class="col-4">
 					<div class="card mb-3 border-0">
 						<div class="card-photo">
-							<img src="./img/예시이미지.jpg" class="card-img-top rounded" alt="...">
+							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
 						<div
-							class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+							class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -53,10 +53,10 @@
 				<div class="col-4">
 					<div class="card mb-3 border-0">
 						<div class="card-photo">
-							<img src="./img/예시이미지.jpg" class="card-img-top rounded" alt="...">
+							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
 						<div
-							class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+							class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -70,10 +70,10 @@
 				<div class="col-4">
 					<div class="card mb-3 border-0">
 						<div class="card-photo">
-							<img src="./img/예시이미지.jpg" class="card-img-top rounded" alt="...">
+							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
 						<div
-							class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+							class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -85,10 +85,10 @@
 				<div class="col-4">
 					<div class="card mb-3 border-0">
 						<div class="card-photo">
-							<img src="./img/예시이미지.jpg" class="card-img-top rounded" alt="...">
+							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
 						<div
-							class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+							class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -100,10 +100,10 @@
 				<div class="col-4">
 					<div class="card mb-3 border-0">
 						<div class="card-photo">
-							<img src="./img/예시이미지.jpg" class="card-img-top rounded" alt="...">
+							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
 						<div
-							class="card-body d-flex justify-content-between bg-light bg-opacity-50">
+							class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">

@@ -35,3 +35,9 @@ body {
 .footer {
 	background-color: #495057
 }
+.card {
+	background-color: #f5f1ee
+}
+.card-img-top {
+	height:100%;
+}

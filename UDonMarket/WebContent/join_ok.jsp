@@ -5,12 +5,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 	request.setCharacterEncoding("UTF-8");
-	int id = Integer.parseInt(request.getParameter("member_id"));
-	String pw = request.getParameter("member_pw");
-	String name = request.getParameter("member_name");
-	String region = request.getParameter("region_id");
+	int member_id = Integer.parseInt(request.getParameter("member_id"));
 	
-	MemberVo mvo = new MemberVo(id, pw, name, region );
+	DAO.selectMemberWhereMemberId(member_id);
+	String member_pw = request.getParameter("member_pw");
+	String member_name = request.getParameter("member_name");
+	String region_id = request.getParameter("region_id");
+	
+	MemberVo mvo = new MemberVo(member_id, member_pw, member_name, region_id );
 	int result = DAO.insertMember(mvo);
 	
 	pageContext.setAttribute("result", result);

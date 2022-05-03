@@ -16,8 +16,7 @@
 	</div>
 	<div class="search-area">
 		<form action="search.jsp?keyword=**">
-			<input type="text" name="keyword" placeholder="search..">
-			<img alt="검색" src="./img/search.png">
+			<input type="text" class="form-control" name="keyword" placeholder="search..">
 		</form>
 	</div>
 </div>

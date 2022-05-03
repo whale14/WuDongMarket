@@ -8,6 +8,12 @@
 		(MEMBER_ID, MEMBER_PW, MEMBER_NAME, REGION_ID) 
 		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{region_id})
 	</insert>
+	
+	<select id="selectMemberWhereMemberId" parameterType="int" resultType="int">
+		SELECT MEMBER_ID 
+		FROM MEMBER 
+		WHERE MEMBER_ID = #{member_id}
+	</select>
 </mapper>
 
 
