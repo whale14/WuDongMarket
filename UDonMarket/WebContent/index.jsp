@@ -13,18 +13,13 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link href="./css/common.css" rel="stylesheet" />
 <link href="./css/index.css" rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
 	<main style="margin-bottom: 100px;">
 		<div class="container shadow rounded-3 mt-4 mb-4">
-			<div class="search-area">
-				<form action="search.jsp?keyword=**">
-					<input type="text" class="form-control" name="keyword"
-						placeholder="search..">
-				</form>
-			</div>
 			<div class="row mt-4">
 				<div class="col-4">
 					<a href="#">
@@ -117,31 +112,7 @@
 			</div>
 		</div>
 	</main>
-	<footer class="footer">
-		<div class="container"
-			style="padding-top: 100px; padding-bottom: 100px;">
-			<div class="d-flex justify-content-between text-white">
-				<p class="fs-3 fw-bold">우동마켓</p>
-				<div>
-					<p class="fs-5 fw-bold">E-mail</p>
-					<p>김동욱-tldhsrkwhr11@naver.com</p>
-					<p>윤정민-yjm38422@naver.com</p>
-					<p>이상규-zaku20@naver.com</p>
-				</div>
-				<div>
-					<p class="fs-5 fw-bold">PHONE</p>
-					<p>김동욱 +82 10-8000-3983</p>
-					<p>윤정민 +82 10-4059-9601</p>
-					<p>이상규 +82 10-2548-7326</p>
-				</div>
-				<div>
-					<p class="fs-5 fw-bold">ITWILL</p>
-					<p>서울특별시 강남구 테헤란로 124 4층 (역삼동, 삼원타워)</p>
-					<p>사업자등록번호 : 172-87-02395</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
