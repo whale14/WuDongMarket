@@ -1,20 +1,20 @@
 <%@page import="com.udon.dao.DAO"%>
 <%@page import="com.udon.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
 	request.setCharacterEncoding("UTF-8");
-	int member_id = Integer.parseInt(request.getParameter("member_id"));
-	
-	String member_pw = request.getParameter("member_pw");
-	String member_name = request.getParameter("member_name");
-	String region_id = request.getParameter("region_id");
-	
-	MemberVo mvo = new MemberVo(member_id, member_pw, member_name, region_id );
-	DAO.insertMember(mvo);
-	
-	pageContext.setAttribute("mvo", mvo);
+int member_id = Integer.parseInt(request.getParameter("member_id"));
+
+String member_pw = request.getParameter("member_pw");
+String member_name = request.getParameter("member_name");
+String region_id = request.getParameter("region_id");
+
+MemberVo mvo = new MemberVo(member_id, member_pw, member_name, region_id);
+DAO.insertMember(mvo);
+
+pageContext.setAttribute("mvo", mvo);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,10 +35,8 @@
 </head>
 
 <body>
-	<c:if test="${result==1}">
-		<h2>가입완료!</h2>
-		<a href="login.jsp">로그인하러가기</a>
-	</c:if>
+	<h2>가입완료!</h2>
+	<a href="login.jsp">로그인하러가기</a>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
