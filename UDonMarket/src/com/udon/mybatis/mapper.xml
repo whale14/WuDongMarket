@@ -9,8 +9,8 @@
 		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{region_id})
 	</insert>
 	
-	<select id="selectMemberWhereMemberId" parameterType="int" resultType="int">
-		SELECT MEMBER_ID 
+	<select id="selectMemberWhereMemberId" parameterType="int" resultType="com.udon.vo.MemberVo">
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, REGION_ID 
 		FROM MEMBER 
 		WHERE MEMBER_ID = #{member_id}
 	</select>

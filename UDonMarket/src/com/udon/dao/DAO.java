@@ -12,11 +12,10 @@ public class DAO {
 		ss.close();
 		return result;
 	}
-	public static int selectMemberWhereMemberId(int member_id) {
-		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.selectOne("udon.selectMemberWhereMemberId", member_id);
-		System.out.print("result: " +result);
+	public static MemberVo selectMemberWhereMemberId(int member_id) {
+		SqlSession ss = DBService.getFactory().openSession();
+		MemberVo mvo = ss.selectOne("udon.selectMemberWhereMemberId", member_id);
 		ss.close();
-		return result;
+		return mvo;
 	}
 }

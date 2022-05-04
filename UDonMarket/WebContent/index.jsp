@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +17,22 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<main style="margin-bottom:100px;">
+	<main style="margin-bottom: 100px;">
 		<div class="container shadow rounded-3 mt-4 mb-4">
+			<div class="search-area">
+				<form action="search.jsp?keyword=**">
+					<input type="text" class="form-control" name="keyword"
+						placeholder="search..">
+				</form>
+			</div>
 			<div class="row mt-4">
 				<div class="col-4">
 					<a href="#">
 						<div class="card mb-3 border-0">
 							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top "
-									alt="...">
+								<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 							</div>
-							<div
-								class="card-body d-flex justify-content-between">
+							<div class="card-body d-flex justify-content-between">
 								<h5 class="card-title w-50 text-start bold">제목</h5>
 								<p class="card-text">가격</p>
 								<p class="card-text">
@@ -40,8 +47,7 @@
 						<div class="card-photo">
 							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
-						<div
-							class="card-body d-flex justify-content-between">
+						<div class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -55,8 +61,7 @@
 						<div class="card-photo">
 							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
-						<div
-							class="card-body d-flex justify-content-between">
+						<div class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -72,8 +77,7 @@
 						<div class="card-photo">
 							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
-						<div
-							class="card-body d-flex justify-content-between">
+						<div class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -87,8 +91,7 @@
 						<div class="card-photo">
 							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
-						<div
-							class="card-body d-flex justify-content-between">
+						<div class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -102,8 +105,7 @@
 						<div class="card-photo">
 							<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
 						</div>
-						<div
-							class="card-body d-flex justify-content-between">
+						<div class="card-body d-flex justify-content-between">
 							<h5 class="card-title w-50 text-start bold">제목</h5>
 							<p class="card-text">가격</p>
 							<p class="card-text">
@@ -116,7 +118,8 @@
 		</div>
 	</main>
 	<footer class="footer">
-		<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+		<div class="container"
+			style="padding-top: 100px; padding-bottom: 100px;">
 			<div class="d-flex justify-content-between text-white">
 				<p class="fs-3 fw-bold">우동마켓</p>
 				<div>

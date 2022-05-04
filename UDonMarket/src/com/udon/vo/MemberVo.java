@@ -7,7 +7,6 @@ public class MemberVo {
 	private String region_id;
 	
 	public MemberVo() {
-		
 	}
 	
 	public MemberVo(int member_id, String member_pw, String member_name, String region_id) {
@@ -40,6 +39,12 @@ public class MemberVo {
 	}
 	public void setRegion_id(String region_id) {
 		this.region_id = region_id;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVo [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
+				+ ", region_id=" + region_id + "]";
 	}
 	
 	

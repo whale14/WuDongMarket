@@ -39,7 +39,7 @@ body {
 			<div class="input-form col-md-12 mx-auto shadow rounded-3">
 				<h4 class="mb-3">로그인</h4>
 				<form class="validation-form"
-					action="index.jsp?member_id=${mvo.member_id }" novalidate>
+					action="login_ok.jsp" novalidate>
 					<div class="mb-3">
 						<label for="member_id">전화번호</label> <input type="text"
 							class="form-control" id="member_id" placeholder="ex)01012345678"
@@ -61,7 +61,7 @@ body {
 						</div>
 					</div>
 				</form>
-				<button class="btn btn-primary btn-block" onclick="goJoin()")>회원가입</button>
+				<button class="btn btn-primary btn-block" onclick="goJoin()">회원가입</button>
 			</div>
 		</div>
 		<footer class="my-3 text-center text-small">

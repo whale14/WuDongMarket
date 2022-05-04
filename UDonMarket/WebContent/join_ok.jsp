@@ -7,15 +7,13 @@
 	request.setCharacterEncoding("UTF-8");
 	int member_id = Integer.parseInt(request.getParameter("member_id"));
 	
-	DAO.selectMemberWhereMemberId(member_id);
 	String member_pw = request.getParameter("member_pw");
 	String member_name = request.getParameter("member_name");
 	String region_id = request.getParameter("region_id");
 	
 	MemberVo mvo = new MemberVo(member_id, member_pw, member_name, region_id );
-	int result = DAO.insertMember(mvo);
+	DAO.insertMember(mvo);
 	
-	pageContext.setAttribute("result", result);
 	pageContext.setAttribute("mvo", mvo);
 %>
 <!DOCTYPE html>
