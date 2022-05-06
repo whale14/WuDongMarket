@@ -1,5 +1,9 @@
 package com.udon.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.udon.mybatis.DBService;
@@ -38,5 +42,23 @@ public class DAO {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		ss.insert("udon.insertProductImage", ivo);
 		ss.close();
+	}
+	
+	public static int selectTotalCount() {
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("udon.totalCount");
+		ss.close();
+		return totalCount;
+	}
+	
+	public static List<PostVo> getPostList(int begin, int end) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		List<PostVo> list = ss.selectList("udon.list", map);
+		ss.close();
+		return list;
 	}
 }

@@ -35,6 +35,7 @@
 	
 	DAO.insertProductImage(ivo);
 	out.println("등록완료");
+	out.println("<a href=\"index.jsp\">메인으로</a>");
 %>
 <!DOCTYPE html>
 <html>

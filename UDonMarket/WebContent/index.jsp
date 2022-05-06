@@ -1,12 +1,17 @@
+<%@page import="com.udon.vo.PostVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.udon.dao.DAO"%>
+<%@page import="com.udon.common.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String member_id = (String) session.getAttribute("member_id");
-	System.out.print(member_id);
+String member_id = (String) session.getAttribute("member_id");
 %>
-<%
-%>
+<% 
+
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +29,14 @@
 	<jsp:include page="/header.jsp"></jsp:include>
 	<main style="margin-bottom: 100px;">
 		<div class="container shadow rounded-3 mt-4 mb-4">
+			<c:if test="${member_id==null }">
+				전지역 최신 리스트 출력
+			</c:if>
+			<c:if test="${member_id!=null }">
+				내지역 최신 리스트 출력
+				
+
+			</c:if>
 			<div class="row mt-4">
 				<div class="col-4">
 					<a href="#">
@@ -114,6 +127,16 @@
 					</div>
 				</div>
 			</div>
+			<nav aria-label="Main list pages">
+				<ul class="pagination pagination-lg justify-content-center">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">이전</a></li>
+					<li class="page-item active"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">다음</a></li>
+				</ul>
+			</nav>
 		</div>
 	</main>
 	<jsp:include page="footer.jsp"></jsp:include>
