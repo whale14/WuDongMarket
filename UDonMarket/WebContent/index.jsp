@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String member_id = (String) session.getAttribute("member_id");
+	System.out.print(member_id);
+%>
+<%
 %>
 <!DOCTYPE html>
 <html>

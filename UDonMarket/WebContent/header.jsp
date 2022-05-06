@@ -5,10 +5,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<% 
-	String member_id = (String)session.getAttribute("member_id");
-	System.out.print(member_id);
-%>
 <header id="header">
 	<div class="container">
 		<div class="d-flex justify-content-between">
