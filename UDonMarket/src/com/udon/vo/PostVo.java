@@ -1,5 +1,7 @@
 package com.udon.vo;
 
+import java.sql.Date;
+
 public class PostVo {
 	private int p_id;
 	private int m_id;
@@ -8,14 +10,14 @@ public class PostVo {
 	private String content;
 	private int price;
 	private String region_id;
-	
-	
-	
+	private Date reg_date;
+		
 	public PostVo() {
 		super();
 	}
 	
-	public PostVo(int p_id, int m_id, String m_name, String title, String content, int price, String region_id) {
+	public PostVo(int p_id, int m_id, String m_name, String title, String content, int price, String region_id,
+			Date reg_date) {
 		super();
 		this.p_id = p_id;
 		this.m_id = m_id;
@@ -24,7 +26,9 @@ public class PostVo {
 		this.content = content;
 		this.price = price;
 		this.region_id = region_id;
+		this.reg_date = reg_date;
 	}
+	
 	public int getP_id() {
 		return p_id;
 	}
@@ -67,6 +71,13 @@ public class PostVo {
 	public void setRegion_id(String region_id) {
 		this.region_id = region_id;
 	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	
 	
 	
 }

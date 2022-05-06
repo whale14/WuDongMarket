@@ -10,7 +10,7 @@
 	</insert>
 
 	<insert id="insertPost" parameterType="com.udon.vo.PostVo">
-		INSERT INTO POST(P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID)
+		INSERT INTO POST(P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID, REG_DATE)
 		VALUES (
 		NVL((SELECT p.P_ID FROM POST p WHERE ROWNUM = 1), 0) +1,
 		#{m_id},
@@ -18,7 +18,8 @@
 		#{title},
 		#{content},
 		#{price},
-		#{region_id}
+		#{region_id},
+		SYSDATE
 		)
 	</insert>
 	
