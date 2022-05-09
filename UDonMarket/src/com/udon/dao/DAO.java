@@ -44,7 +44,7 @@ public class DAO {
 		ss.close();
 	}
 	
-	public static int selectTotalCount() {
+	public static int getTotalCount() {
 		SqlSession ss = DBService.getFactory().openSession();
 		int totalCount = ss.selectOne("udon.totalCount");
 		ss.close();
@@ -61,4 +61,5 @@ public class DAO {
 		ss.close();
 		return list;
 	}
+	
 }

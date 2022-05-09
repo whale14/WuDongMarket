@@ -39,6 +39,21 @@
 		WHERE MEMBER_ID = #{member_id}
 	</select>
 	
+	<select id="list" resultType="com.udon.vo.PostVo"
+  			parameterType="map">
+	  	SELECT *
+		  FROM (SELECT ROWNUM R_NUM, p.*
+		          FROM (SELECT *
+		                  FROM Post 
+		                 ORDER BY P_ID DESC
+		                ) p
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}  
+  	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) AS CNT FROM POST
+	</select>
 </mapper>
 
 

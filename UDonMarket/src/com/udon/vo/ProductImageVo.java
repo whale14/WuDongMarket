@@ -35,5 +35,10 @@ public class ProductImageVo {
 	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductImageVo [file_name=" + file_name + ", ori_name=" + ori_name + ", p_id=" + p_id + "]";
+	}
 	
 }

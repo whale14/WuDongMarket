@@ -1,17 +1,61 @@
+<%@page import="com.udon.vo.ProductImageVo"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="com.udon.common.Paging"%>
 <%@page import="com.udon.vo.PostVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.udon.dao.DAO"%>
-<%@page import="com.udon.common.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 String member_id = (String) session.getAttribute("member_id");
+List<PostVo> posts;
 %>
-<% 
+<%
+	Paging p = new Paging();
+p.setTotalRecord(DAO.getTotalCount());
+int row;
+if(DAO.getTotalCount() <= 3) row = 1;
+else if(DAO.getTotalCount() > 3 && DAO.getTotalCount() <= 6) row = 2;
+else if(DAO.getTotalCount() > 6 && DAO.getTotalCount() <= 9) row = 2;
+else row = 4;
+pageContext.setAttribute("row", row);
 
- %>
+p.setTotalPage();
+System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
+System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
+
+String cPage = request.getParameter("cPage");
+if (cPage != null) {
+	p.setNowPage(Integer.parseInt(cPage));
+}
+System.out.println("> cPage : " + cPage);
+System.out.println("> paging nowPage : " + p.getNowPage());
+
+p.setEnd(p.getNowPage() * p.getNumPerPage());
+p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+
+if (p.getEnd() > p.getTotalRecord()) {
+	p.setEnd(p.getTotalRecord());
+}
+System.out.println(">> 시작번호(begin) : " + p.getBegin());
+System.out.println(">> 끝번호(end) : " + p.getEnd());
+
+int nowPage = p.getNowPage();
+int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
+p.setBeginPage(beginPage);
+p.setEndPage(beginPage + p.getPagePerBlock() - 1);
+
+if (p.getEndPage() > p.getTotalPage()) {
+	p.setEndPage(p.getTotalPage());
+}
+
+System.out.println(">> beginPage : " + p.getBeginPage());
+System.out.println(">> endPage : " + p.getEndPage());
+
+pageContext.setAttribute("p", p);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +75,33 @@ String member_id = (String) session.getAttribute("member_id");
 		<div class="container shadow rounded-3 mt-4 mb-4">
 			<c:if test="${member_id==null }">
 				전지역 최신 리스트 출력
+				<%
+					posts = DAO.getPostList(p.getBegin(), p.getEnd());
+					System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
+
+					pageContext.setAttribute("posts", posts);
+					
+				%>
+				<c:forEach var="row" begin="1" end="${row }">
+					<div class="row mt-4">
+						<c:forEach var="vo" items="${posts }">
+							<div class="col-4">
+								<div class="card mb-3 border-0">
+									<div class="card-photo">
+										<img src="./img/예시이미지.jpg" class="card-img-top " alt="...">
+									</div>
+									<div class="card-body d-flex justify-content-between">
+										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
+										<p class="card-text">${vo.price }</p>
+										<p class="card-text">
+											<small class="text-muted">${vo.reg_date }</small>
+										</p>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</c:forEach>
 			</c:if>
 			<c:if test="${member_id!=null }">
 				내지역 최신 리스트 출력
