@@ -20,6 +20,7 @@
 				</c:if>
 				<c:if test="${member_id!=null }">
 					<a class="m-auto" href="registration.jsp">판매등록</a>
+					<a class="m-auto" href="information.jsp">회원정보</a>
 					<a href="logout.jsp">로그아웃</a>
 				</c:if>
 
