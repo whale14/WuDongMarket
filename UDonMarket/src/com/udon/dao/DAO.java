@@ -75,4 +75,24 @@ public class DAO {
 		ss.close();
 		return vo;
 	}
+	
+	public static void updateMember(MemberVo upMvo, int member_id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("newMemberId", upMvo.getMember_id());
+		map.put("newMemberPw", upMvo.getMember_pw());
+		map.put("newMemberName", upMvo.getMember_name());
+		map.put("newRegionId", upMvo.getRegion_id());
+		map.put("searchMemberId", member_id);
+		
+		System.out.println("newMemberId:" + upMvo.getMember_id());
+		System.out.println("newMemberPw:" + upMvo.getMember_pw());
+		System.out.println("newMemberName:" + upMvo.getMember_name());
+		System.out.println("newRegionId:" + upMvo.getRegion_id());
+		System.out.println("searchMemberId:" + member_id);
+		
+		SqlSession ss = DBService.getFactory().openSession(true);
+		ss.update("udon.updateMember", map);
+		ss.commit();
+		ss.close();
+	}
 }

@@ -30,21 +30,38 @@ pageContext.setAttribute("mvo", mvo);
 			<h1>회원정보 수정</h1>
 			<form action="update_ok.jsp">
 				<div class="row mt-5">
+				<div class="mb-3">
 					<label for="member_id">전화번호</label> <input type="text"
 						class="form-control" id="member_id" value="0${mvo.member_id }"
-						name="member_id" required>
+						name="member_id">
 				</div>
-				<div class="d-flex justify-content-between mb-3">
-					<h4 class="text fw-bold">비밀번호:</h4>
-					<h4 class="text">${mvo.member_pw }</h4>
+				<div class="mb-3">
+					<label for="member_pw">비밀번호</label> <input type="text"
+						class="form-control" id="member_pw" value="${mvo.member_pw }"
+						name="member_pw">
 				</div>
-				<div class="d-flex justify-content-between mb-3">
-					<h4 class="text fw-bold">이름(닉네임):</h4>
-					<h4 class="text">${mvo.member_name }</h4>
+				<div class="mb-3">
+					<label for="member_name">이름(닉네임)</label> <input type="text"
+						class="form-control" id="member_name" value="${mvo.member_name }"
+						name="member_name">
 				</div>
-				<div class="d-flex justify-content-between mb-3">
-					<h4 class="text fw-bold">거주지역:</h4>
-					<h4 class="text">${mvo.region_id }</h4>
+				<div class=" mb-3">
+					<label for="region_id">지역</label> <select class="form-select"
+							aria-label="Default select example" id="region_id" name="region_id" required>
+							<option value="" selected disabled hidden>지역을 선택하세요</option>
+							<option value="서울특별시">서울특별시</option>
+							<option value="강원도">강원도</option>
+							<option value="경기도">경기도</option>
+							<option value="경상도">경상도</option>
+							<option value="전라도">전라도</option>
+							<option value="제주도">제주도</option>
+							<option value="충청도">충청도</option>
+							<option value="광주광역시">광주광역시</option>
+							<option value="대전광역시">대전광역시</option>
+							<option value="부산광역시">부산광역시</option>
+							<option value="울산광역시">울산광역시</option>
+							<option value="인천광역시">인천광역시</option>
+						</select>
 				</div>
 				<hr>
 				<button class="btn btn-primary col-12 mt-3">회원정보 수정</button>

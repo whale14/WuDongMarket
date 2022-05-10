@@ -74,6 +74,12 @@
 		FROM POST
 		WHERE P_ID = #{p_id}
 	</select>
+	
+	<update id="updateMember" parameterType="map">
+		UPDATE MEMBER
+		SET MEMBER_ID=#{newMemberId}, MEMBER_PW=#{newMemberPw}, MEMBER_NAME=#{newMemberName}, REGION_ID=#{newRegionId}
+		WHERE MEMBER_ID=#{searchMemberId}
+	</update>
 </mapper>
 
 

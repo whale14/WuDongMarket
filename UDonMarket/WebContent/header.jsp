@@ -9,14 +9,13 @@
 	<div class="container">
 		<div class="d-flex justify-content-between">
 			<div style="display: inline-block;">
-				<img src="./img/logo.png" title="로고"
-					style="float: left; width: 125px; height: 100px;" /> <a
-					href="index.jsp">우동마켓</a>
+				<a href="index.jsp"> <img src="./img/logo2.png" title="로고"
+					style="float: left; width: 125px; height: 50px;" /></a>
 			</div>
 			<div class="header-top-right">
 				<c:if test="${member_id==null }">
 					<a href="login.jsp">로그인</a>
-					
+
 				</c:if>
 				<c:if test="${member_id!=null }">
 					<a class="m-auto" href="registration.jsp">판매등록</a>
@@ -26,12 +25,12 @@
 
 			</div>
 		</div>
-		<div class="search-area">
-				<form action="search.jsp?keyword=**">
-					<input type="text" class="form-control" name="keyword"
-						placeholder="search..">
-				</form>
-			</div>
-		
+		<div class="search-area mt-5">
+			<form action="search.jsp?keyword=**" autocomplete="off">
+				<input type="text" class="form-control" name="keyword"
+					placeholder="search..">
+			</form>
+		</div>
+
 	</div>
 </header>
