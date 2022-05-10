@@ -44,7 +44,8 @@ pageContext.setAttribute("pvo", pvo);
 					<div class="d-flex justify-content-between">
 						<div class="align-self-start">
 							<h5 class="card-title text-start fw-bold">${pvo.m_name }</h5>
-							<p class="card-text">${pvo.region_id }</p>
+							<p class="card-text"><img src="./img/지역로고.png" width="12" height="12" alt="지역로고">
+							${pvo.region_id }</p>
 						</div>
 						<div id="bt" class="btn-group" role="group"
 							aria-label="Basic mixed styles example">
