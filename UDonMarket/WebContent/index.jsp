@@ -93,7 +93,7 @@ pageContext.setAttribute("imgs", imgs);
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
 	<main style="margin-bottom: 100px;">
-		<div class="container shadow rounded-3 mt-4 mb-4">
+		<div class="container shadow rounded-3 mt-4 mb-4 bg-light">
 			<c:if test="${member_id==null }">
 				<div class="row mt-4">
 					<c:forEach var="vo" items="${posts }" varStatus="status">
@@ -129,21 +129,23 @@ pageContext.setAttribute("imgs", imgs);
 					<c:forEach var="vo" items="${posts }" varStatus="status">
 						<c:if test="${vo.region_id eq mvo.region_id }">
 							<div class="col-4">
-								<div class="card mb-3 border-0">
-									<div class="card-photo">
-										<c:url
-											value="../../../../../../temp/${imgs[status.index].file_name }"
-											var="data" />
-										<img src="${data }" class="card-img-top" alt="...">
+								<a href="detailpage.jsp?p_id=${vo.p_id }">
+									<div class="card mb-3 border-0">
+										<div class="card-photo">
+											<c:url
+												value="../../../../../../temp/${imgs[status.index].file_name }"
+												var="data" />
+											<img src="${data }" class="card-img-top" alt="...">
+										</div>
+										<div class="card-body d-flex justify-content-between">
+											<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
+											<p class="card-text">${vo.price }</p>
+											<p class="card-text">
+												<small class="text-muted">${vo.reg_date }</small>
+											</p>
+										</div>
 									</div>
-									<div class="card-body d-flex justify-content-between">
-										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
-										<p class="card-text">${vo.price }</p>
-										<p class="card-text">
-											<small class="text-muted">${vo.reg_date }</small>
-										</p>
-									</div>
-								</div>
+								</a>
 							</div>
 						</c:if>
 					</c:forEach>

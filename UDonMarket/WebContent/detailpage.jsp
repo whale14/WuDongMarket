@@ -35,7 +35,7 @@ pageContext.setAttribute("pvo", pvo);
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
 	<main style="margin-bottom: 100px;">
-		<div class="container shadow rounded-3 mt-4 mb-4 w-50">
+		<div class="container shadow rounded-3 mt-4 mb-4 w-50 bg-light">
 			<div class="card mb-3 border-0">
 				<div class="card-photo">
 					<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
