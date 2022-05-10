@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.card-photo {
+	height: 700px;
+	overflow: hidden;
+	border-radius: 30px;
+}
+
+.card {
+	background-color: #f5f1ee
+}
+.card-img-top {
+	height:100%;
+}

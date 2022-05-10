@@ -62,4 +62,17 @@ public class DAO {
 		return list;
 	}
 	
+	public static ProductImageVo getImg(int p_id) {
+		SqlSession ss = DBService.getFactory().openSession();
+		ProductImageVo vo = ss.selectOne("udon.img", p_id);
+		ss.close();
+		return vo;
+	}
+	
+	public static PostVo getPost(int p_id) {
+		SqlSession ss = DBService.getFactory().openSession();
+		PostVo vo = ss.selectOne("udon.post", p_id);
+		ss.close();
+		return vo;
+	}
 }

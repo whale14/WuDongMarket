@@ -6,13 +6,15 @@
 	<insert id="insertMember" parameterType="com.udon.vo.MemberVo">
 		INSERT INTO MEMBER
 		(MEMBER_ID, MEMBER_PW, MEMBER_NAME, REGION_ID)
-		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{region_id})
+		VALUES (#{member_id},
+		#{member_pw}, #{member_name}, #{region_id})
 	</insert>
 
 	<insert id="insertPost" parameterType="com.udon.vo.PostVo">
-		INSERT INTO POST(P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID, REG_DATE)
+		INSERT INTO POST(P_ID,
+		M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID, REG_DATE)
 		VALUES (
-		NVL((SELECT p.P_ID FROM POST p WHERE ROWNUM = 1), 0) +1,
+		(SELECT NVL(MAX(P_ID), 0) + 1 FROM POST),
 		#{m_id},
 		#{m_name},
 		#{title},
@@ -22,12 +24,14 @@
 		SYSDATE
 		)
 	</insert>
-	
-	<select id="selectMaxPidFromPost" parameterType="int" resultType="int">
+
+	<select id="selectMaxPidFromPost" parameterType="int"
+		resultType="int">
 		SELECT MAX(P_ID) FROM POST WHERE M_ID = #{member_id}
 	</select>
-	
-	<insert id="insertProductImage" parameterType="com.udon.vo.ProductImageVo">
+
+	<insert id="insertProductImage"
+		parameterType="com.udon.vo.ProductImageVo">
 		INSERT INTO PRODUCT_IMAGE(FILE_NAME, ORI_NAME, P_ID)
 		VALUES (#{file_name}, #{ori_name}, #{p_id})
 	</insert>
@@ -35,24 +39,40 @@
 	<select id="selectMemberWhereMemberId" parameterType="int"
 		resultType="com.udon.vo.MemberVo">
 		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, REGION_ID
-		FROM MEMBER
+		FROM
+		MEMBER
 		WHERE MEMBER_ID = #{member_id}
 	</select>
-	
+
 	<select id="list" resultType="com.udon.vo.PostVo"
-  			parameterType="map">
-	  	SELECT *
-		  FROM (SELECT ROWNUM R_NUM, p.*
-		          FROM (SELECT *
-		                  FROM Post 
-		                 ORDER BY P_ID DESC
-		                ) p
-		       )
-		 WHERE R_NUM BETWEEN #{begin} AND #{end}  
-  	</select>
-	
+		parameterType="map">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, p.*
+		FROM (SELECT *
+		FROM Post
+		ORDER BY P_ID DESC
+		) p
+		)
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+
 	<select id="totalCount" resultType="int">
-		SELECT COUNT(*) AS CNT FROM POST
+		SELECT COUNT(*) AS CNT FROM
+		POST
+	</select>
+
+	<select id="img" parameterType="int"
+		resultType="com.udon.vo.ProductImageVo">
+		SELECT FILE_NAME, ORI_NAME, P_ID
+		FROM PRODUCT_IMAGE
+		WHERE P_ID = #{p_id}
+	</select>
+	
+	<select id="post" parameterType="int"
+		resultType="com.udon.vo.PostVo">
+		SELECT P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID, REG_DATE
+		FROM POST
+		WHERE P_ID = #{p_id}
 	</select>
 </mapper>
 
