@@ -48,7 +48,7 @@ pageContext.setAttribute("mvo", mvo);
 						<h4 class="text">${mvo.region_id }</h4>
 					</div>
 					<hr>
-					<a class="btn btn-primary col-12 mt-3">회원정보 수정</a>
+					<a class="btn btn-primary col-12 mt-3 text-light" href="userUpdate.jsp?member_id=${member_id }">회원정보 수정</a>
 					<a class="btn btn-primary col-12 mt-3 mb-4">등록상품 관리</a>
 				</div>
 			</div>
