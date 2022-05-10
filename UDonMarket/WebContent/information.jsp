@@ -1,169 +1,65 @@
+<%@page import="com.udon.dao.DAO"%>
+<%@page import="com.udon.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+String member_id = (String) session.getAttribute("member_id");
+MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
+pageContext.setAttribute("mvo", mvo);
+%>
 <!DOCTYPE html>
 <html>
 
- <head>
+<head>
+<meta charset="UTF-8">
+<title>회원정보</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link href="./css/common.css" rel="stylesheet" />
+</head>
+<body>
+	<jsp:include page="/header.jsp"></jsp:include>
 
-    <meta charset="UTF-8">
-     <title></title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap');
-@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-
-.imsi-title {
-
-    color: #003c8a;
-    font-weight: 500;
-    font-size: 60px;
-    
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.imsi-category {
-    text-align: left;
-    font-weight: 500;
-    font-size: 1.2em;
-    letter-spacing: -0.1em;
-    margin: 0;
-    margin-top: 10px;
-}
-
-.imsi-text {
-    text-align: left;
-    font-weight: 300;
-    font-size: 1.7em;
-    letter-spacing: -0.1em;
-    margin-top: 0;
-}
-
-.point {
-    color: #003c8a;
-    font-weight: 900;
-    font-size: 25px;
-}
-
-body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-
-
-}
-
-
-
-.imsi-sub-frame{
-    position: relative;
-    width: 850px;
-    height: 650px;
-    background-color: rgba(255,255,255,0.7);
-    border-radius: 10px;
-
-    margin: auto;
-    margin-top: 100px;
-    
-}
-
-.imsi-left {
-    position: absolute;
-    left: 0;
-    width: 550px;
-    height: 350px;
-    border-right: 1px solid rgb(255, 255, 255, 0.7);
-    text-align: center;
-    margin-top: 43px;
-    
-
-}
-
-.kkk {
-   
-    width: 350px;
-    margin: 0 auto;
-}
-
-
-
-.imsi-right {
-    position: absolute;
-    right: 0;
-    width: 300px;
-    height: 740px;
-    text-align: center;
-    
-}
-
-.imsi-button {
-    margin: 10px auto;
-    color: white;
-    border: 1px solid #003c8a;
-    background-color: #003c8a;
-    text-align: center;
-    padding-bottom: 15px;
-    padding-top: 10px;
-    width: 170px;
-    transition: 0.2s;
-    border-radius: 10px;
-    margin-bottom: 42px;
-}
-
-
-
-.imsi-button:hover {
-    border: 1px solid #0a1b7a;
-    background-color: #0a1b7a;
-}
-</style>
-     
-
- </head>  
-
- <body>
-
-     <jsp:include page="/header.jsp"></jsp:include>
-
-     <div class="imsi-sub-frame">
-
-		<div style="  padding-top: 50px;  margin-left: 37%;">
-			<p class="imsi-title">회원정보</p>
-		</div>
-
-         <div class="imsi-left">
-             
-             <div class="kkk">
-                 <p class="imsi-category">· <span class="point">아이디</span></p>
-                 <p class="imsi-text">_ 010 8000 3983</p>
-                 <p class="imsi-category">· <span class="point">비밀번호</span></p>
-                 <p class="imsi-text">_ qwer3543</p>
-                 <p class="imsi-category">· <span class="point">지역</span></p>
-                 <p class="imsi-text">_ 경기도</p>
-                 <p class="imsi-category">· <span class="point">신뢰도</span></p>
-                 <p class="imsi-text">_ 78점</p>
-                 
-             </div>
-         </div>
-         
-         
-			<div class="imsi-right" style="margin-top: 60px; ">
-				
-				<a href="#"><div class="imsi-button"> 판매내역 </div></a>
-				<a href="#"><div class="imsi-button"> 채팅내역 </div></a>
-				<a href="#"><div class="imsi-button"> 구매내역</div></a>
-				<a href="userChange.jsp"><div class="imsi-button"> 회원정보 수정</div></a>
-
+	<main style="margin-bottom: 100px;">
+		<div class="container shadow rounded-3 mt-4 mb-4 w-50 p-5">
+			<h1>회원정보</h1>
+			<div class="row mt-5 text-center">
+				<div class="justify-content-md-center w-75"
+					style="float: none; margin: 0 auto">
+					<div class="d-flex justify-content-between mb-3">
+						<h4 class="text fw-bold">전화번호:</h4>
+						<h4 class="text">0${mvo.member_id }</h4>
+					</div>
+					<div class="d-flex justify-content-between mb-3">
+						<h4 class="text fw-bold">비밀번호:</h4>
+						<h4 class="text">${mvo.member_pw }</h4>
+					</div>
+					<div class="d-flex justify-content-between mb-3">
+						<h4 class="text fw-bold">이름(닉네임):</h4>
+						<h4 class="text">${mvo.member_name }</h4>
+					</div>
+					<div class="d-flex justify-content-between mb-3">
+						<h4 class="text fw-bold">거주지역:</h4>
+						<h4 class="text">${mvo.region_id }</h4>
+					</div>
+					<hr>
+					<a class="btn btn-primary col-12 mt-3">회원정보 수정</a>
+					<a class="btn btn-primary col-12 mt-3 mb-4">등록상품 관리</a>
+				</div>
 			</div>
-    	</div>
-    	
-    	<br><br><br><br><br><br>
+		</div>
+	</main>
 
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -69,7 +69,6 @@ System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
 
 pageContext.setAttribute("posts", posts);
 
-System.out.print(DAO.getImg(0).toString());
 imgs = new ArrayList<>();
 for (PostVo pvo : posts) {
 	System.out.print(pvo.getP_id());
