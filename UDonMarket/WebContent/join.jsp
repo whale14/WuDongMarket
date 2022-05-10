@@ -32,6 +32,9 @@ body {
 </head>
 
 <body>
+<div style="text-align: center; margin-top: 50px;">
+	<a href="index.jsp"><img src="./img/logo2.png" title="로고" style="float: center; width: 300px; height: 100px;" /></a>
+</div>
 	<div class="container">
 		<div class="input-form-backgroud row ">
 			<div class="input-form col-md-12 mx-auto shadow rounded-3">
