@@ -75,6 +75,14 @@ public class DAO {
 		ss.close();
 		return totalCount;
 	}
+	
+	public static List<PostVo> getPostList(int member_id) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<PostVo> list = ss.selectList("udon.mylist", member_id);
+		ss.close();
+		return list;
+	}
+	
 	public static List<PostVo> getPostList(int begin, int end) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("begin", begin);
@@ -154,6 +162,24 @@ public class DAO {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		ss.update("udon.updateMember", map);
 		ss.commit();
+		ss.close();
+	}
+	
+	public static void deleteImg(int p_id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		ss.delete("udon.deleteImg", p_id);
+		ss.close();
+	}
+	
+	public static void deletePosts(int member_id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		ss.delete("udon.deletePosts", member_id);
+		ss.close();
+	}
+	
+	public static void deleteMember(int member_id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		ss.delete("udon.deleteMember", member_id);
 		ss.close();
 	}
 }

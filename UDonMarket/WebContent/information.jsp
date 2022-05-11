@@ -50,6 +50,7 @@ pageContext.setAttribute("mvo", mvo);
 					<hr>
 					<a class="btn btn-primary col-12 mt-3 text-light" href="update.jsp?member_id=${member_id }">회원정보 수정</a>
 					<a class="btn btn-primary col-12 mt-3 mb-4">등록상품 관리</a>
+					<a class="btn btn-primary col-12 mt-3 mb-4" href="deleteAccount.jsp?member_id=${member_id }">계정 삭제</a>
 				</div>
 			</div>
 		</div>

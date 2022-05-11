@@ -55,6 +55,13 @@
 		)
 		WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
+	
+	<select id="mylist" resultType="com.udon.vo.PostVo"
+		parameterType="int">
+		SELECT *
+		FROM POST
+		WHERE M_ID = #{member_id}
+	</select>
 
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) AS CNT FROM
@@ -144,6 +151,21 @@
 		)
 		WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
+	
+	<delete id="deleteImg" parameterType="int">
+		Delete FROM PRODUCT_IMAGE
+		WHERE P_ID = #{p_id}
+	</delete>
+	
+	<delete id="deletePosts" parameterType="int">
+		Delete FROM POST
+		WHERE M_ID = #{member_id}
+	</delete>
+	
+	<delete id="deleteMember" parameterType="int">
+		Delete FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</delete>
 </mapper>
 
 
