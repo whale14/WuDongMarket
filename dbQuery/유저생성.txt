@@ -1,3 +1,0 @@
-create user udon IDENTIFIED by udonpw;
-grant connect, resource, dba to udon;
-commit;
