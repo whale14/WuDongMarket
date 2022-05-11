@@ -12,7 +12,8 @@
 	String member_id = (String) session.getAttribute("member_id");
 	System.out.print(member_id);
 	
-	String path = "C:/temp";
+	ServletContext context = getServletContext();
+	String path = "c:/temp";
 	
 	MultipartRequest mr = new MultipartRequest(request, path, (10*1024*1024), "UTF-8", new DefaultFileRenamePolicy());
 	

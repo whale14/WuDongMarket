@@ -10,7 +10,7 @@
 		<div class="d-flex justify-content-between">
 			<div style="display: inline-block;">
 				<a href="index.jsp"> <img src="./img/logo2.png" title="로고"
-					style="float: left; width: 125px; height: 50px;" /></a>
+					style="float: left; width: 125px; height: 35px;" /></a>
 			</div>
 			<div class="header-top-right">
 				<c:if test="${member_id==null }">

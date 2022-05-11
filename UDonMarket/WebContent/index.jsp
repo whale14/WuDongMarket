@@ -16,66 +16,7 @@ List<PostVo> posts;
 List<ProductImageVo> imgs;
 %>
 <%
-	Paging p = new Paging();
-p.setTotalRecord(DAO.getTotalCount());
-int row;
-if (DAO.getTotalCount() <= 3)
-	row = 1;
-else if (DAO.getTotalCount() > 3 && DAO.getTotalCount() <= 6)
-	row = 2;
-else if (DAO.getTotalCount() > 6 && DAO.getTotalCount() <= 9)
-	row = 2;
-else
-	row = 4;
-pageContext.setAttribute("row", row);
 
-p.setTotalPage();
-System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
-System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
-
-String cPage = request.getParameter("cPage");
-if (cPage != null) {
-	p.setNowPage(Integer.parseInt(cPage));
-}
-System.out.println("> cPage : " + cPage);
-System.out.println("> paging nowPage : " + p.getNowPage());
-
-p.setEnd(p.getNowPage() * p.getNumPerPage());
-p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
-
-if (p.getEnd() > p.getTotalRecord()) {
-	p.setEnd(p.getTotalRecord());
-}
-System.out.println(">> 시작번호(begin) : " + p.getBegin());
-System.out.println(">> 끝번호(end) : " + p.getEnd());
-
-int nowPage = p.getNowPage();
-int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
-p.setBeginPage(beginPage);
-p.setEndPage(beginPage + p.getPagePerBlock() - 1);
-
-if (p.getEndPage() > p.getTotalPage()) {
-	p.setEndPage(p.getTotalPage());
-}
-
-System.out.println(">> beginPage : " + p.getBeginPage());
-System.out.println(">> endPage : " + p.getEndPage());
-
-pageContext.setAttribute("p", p);
-%>
-<%
-	posts = DAO.getPostList(p.getBegin(), p.getEnd());
-System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
-
-pageContext.setAttribute("posts", posts);
-
-imgs = new ArrayList<>();
-for (PostVo pvo : posts) {
-	System.out.print(pvo.getP_id());
-	imgs.add(DAO.getImg(pvo.getP_id()));
-}
-
-pageContext.setAttribute("imgs", imgs);
 %>
 <!DOCTYPE html>
 <html>
@@ -89,13 +30,128 @@ pageContext.setAttribute("imgs", imgs);
 	crossorigin="anonymous">
 <link href="./css/common.css" rel="stylesheet" />
 <link href="./css/index.css" rel="stylesheet" />
+<script>
+	function sendData() {
+		//alert("sendData() 시작");
+		let firstForm = document.forms[0];
+		//alert("firstForm.elements.length : " + firstForm.elements.length);
+		for (let i = 0; i < firstForm.elements.length; i++) {
+			if (firstForm.elements[i].value.trim() == "") {
+				if (i == 3)
+					continue; //첨부파일은 제외
+				alert(firstForm.elements[i].title + " 입력하세요");
+				firstForm.elements[i].focus();
+				return;
+			}
+		}
+		firstForm.submit();
+	}
+</script>
 </head>
-<body>
+<body class="text-center">
 	<jsp:include page="/header.jsp"></jsp:include>
+	<h1 class="fw-bold mt-5 text-secondary">우리동네 우동마켓</h1>
+	<p>
+		당신 근처 말고 우리 동네 <br>다같이 함께 거래하며 따듯한 우리동네를 만들어요
+	</p>
 	<main style="margin-bottom: 100px;">
 		<div class="container shadow rounded-3 mt-4 mb-4 bg-light">
 			<c:if test="${member_id==null }">
+				<%
+				Paging p = new Paging();
+				p.setTotalRecord(DAO.getTotalCount());
+				p.setTotalPage();
+				System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
+				System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
+
+				String cPage = request.getParameter("cPage");
+				if (cPage != null) {
+					p.setNowPage(Integer.parseInt(cPage));
+				}
+				System.out.println("> cPage : " + cPage);
+				System.out.println("> paging nowPage : " + p.getNowPage());
+
+				p.setEnd(p.getNowPage() * p.getNumPerPage());
+				p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+
+				if (p.getEnd() > p.getTotalRecord()) {
+					p.setEnd(p.getTotalRecord());
+				}
+				System.out.println(">> 시작번호(begin) : " + p.getBegin());
+				System.out.println(">> 끝번호(end) : " + p.getEnd());
+
+				int nowPage = p.getNowPage();
+				int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
+				p.setBeginPage(beginPage);
+				p.setEndPage(beginPage + p.getPagePerBlock() - 1);
+
+				if (p.getEndPage() > p.getTotalPage()) {
+					p.setEndPage(p.getTotalPage());
+				}
+
+				System.out.println(">> beginPage : " + p.getBeginPage());
+				System.out.println(">> endPage : " + p.getEndPage());
+
+				pageContext.setAttribute("p", p);
+				%>
+				<%
+					posts = DAO.getPostList(p.getBegin(), p.getEnd());
+				System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
+
+				pageContext.setAttribute("posts", posts);
+
+				imgs = new ArrayList<>();
+				for (PostVo pvo : posts) {
+					System.out.print(pvo.getP_id());
+					imgs.add(DAO.getImg(pvo.getP_id()));
+				}
+
+				pageContext.setAttribute("imgs", imgs);
+				%>
+				<h1 class="text-secondary">전지역 최근 올라온 중고물건</h1>
 				<div class="row mt-4">
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
 					<c:forEach var="vo" items="${posts }" varStatus="status">
 						<div class="col-4">
 							<a href="detailpage.jsp?p_id=${vo.p_id }">
@@ -120,34 +176,120 @@ pageContext.setAttribute("imgs", imgs);
 				</div>
 			</c:if>
 			<c:if test="${member_id!=null }">
-				내지역 최신 리스트 출력
+				<h1 class="text-secondary">내지역 최근 올라온 중고물건</h1>
 				<div class="row mt-4">
 					<%
-						MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
-					pageContext.setAttribute("mvo", mvo);
+					MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
+					Paging p = new Paging();
+					p.setTotalRecord(DAO.getMyRegionCount(mvo.getRegion_id()));
+					p.setTotalPage();
+					System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
+					System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
+
+					String cPage = request.getParameter("cPage");
+					if (cPage != null) {
+						p.setNowPage(Integer.parseInt(cPage));
+					}
+					System.out.println("> cPage : " + cPage);
+					System.out.println("> paging nowPage : " + p.getNowPage());
+
+					p.setEnd(p.getNowPage() * p.getNumPerPage());
+					p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+
+					if (p.getEnd() > p.getTotalRecord()) {
+						p.setEnd(p.getTotalRecord());
+					}
+					System.out.println(">> 시작번호(begin) : " + p.getBegin());
+					System.out.println(">> 끝번호(end) : " + p.getEnd());
+
+					int nowPage = p.getNowPage();
+					int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
+					p.setBeginPage(beginPage);
+					p.setEndPage(beginPage + p.getPagePerBlock() - 1);
+
+					if (p.getEndPage() > p.getTotalPage()) {
+						p.setEndPage(p.getTotalPage());
+					}
+
+					System.out.println(">> beginPage : " + p.getBeginPage());
+					System.out.println(">> endPage : " + p.getEndPage());
+
+					pageContext.setAttribute("p", p);
 					%>
-					<c:forEach var="vo" items="${posts }" varStatus="status">
-						<c:if test="${vo.region_id eq mvo.region_id }">
-							<div class="col-4">
-								<a href="detailpage.jsp?p_id=${vo.p_id }">
-									<div class="card mb-3 border-0">
-										<div class="card-photo">
-											<c:url
-												value="../../../../../../temp/${imgs[status.index].file_name }"
-												var="data" />
-											<img src="${data }" class="card-img-top" alt="...">
-										</div>
-										<div class="card-body d-flex justify-content-between">
-											<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
-											<p class="card-text">${vo.price }</p>
-											<p class="card-text">
-												<small class="text-muted">${vo.reg_date }</small>
-											</p>
-										</div>
-									</div>
-								</a>
+					<%
+						posts = DAO.getRegionPostList(p.getBegin(), p.getEnd(), mvo.getRegion_id());
+					System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
+
+					pageContext.setAttribute("posts", posts);
+
+					imgs = new ArrayList<>();
+					for (PostVo pvo : posts) {
+						System.out.print(pvo.getP_id());
+						imgs.add(DAO.getImg(pvo.getP_id()));
+					}
+
+					pageContext.setAttribute("imgs", imgs);
+					%>
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
 							</div>
-						</c:if>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card mb-3 border-0">
+							<div class="card-photo">
+								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body d-flex justify-content-between">
+								<h5 class="card-title w-50 text-start bold">제목</h5>
+								<p class="card-text">가격</p>
+								<p class="card-text">
+									<small class="text-muted">등록일</small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<c:forEach var="vo" items="${posts }" varStatus="status">
+						<div class="col-4">
+							<a href="detailpage.jsp?p_id=${vo.p_id }">
+								<div class="card mb-3 border-0">
+									<div class="card-photo">
+										<img src="c:/temp/${imgs[status.index].file_name }"
+											class="card-img-top" alt="...">
+									</div>
+									<div class="card-body d-flex justify-content-between">
+										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
+										<p class="card-text">${vo.price }원</p>
+										<p class="card-text">
+											<small class="text-muted">${vo.reg_date }</small>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>
@@ -164,7 +306,7 @@ pageContext.setAttribute("imgs", imgs);
 
 					<c:forEach var="pageNo" begin="${p.beginPage }" end="${p.endPage }">
 						<c:if test="${pageNo == p.nowPage}">
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
+							<li class="page-item active"><a class="page-link" href="#">${p.nowPage }</a></li>
 						</c:if>
 						<c:if test="${pageNo != p.nowPage}">
 							<li class="page-item"><a class="page-link"
@@ -175,7 +317,7 @@ pageContext.setAttribute("imgs", imgs);
 
 					<c:if test="${p.endPage < p.totalPage }">
 						<li class="page-item "><a class="page-link"
-							href="index.jsp?cPage=${p.beginPage + 1 }">다음</a></li>
+							href="index.jsp?cPage=${p.endPage + 1 }">다음</a></li>
 					</c:if>
 					<c:if test="${p.endPage >= p.totalPage }">
 						<li class="page-item disabled"><a class="page-link" href="#"

@@ -61,25 +61,50 @@
 		POST
 	</select>
 
+	<select id="myRegionCount" resultType="int"
+		parameterType="String">
+		SELECT COUNT(*) AS CNT FROM
+		POST
+		WHERE REGION_ID = #{region_id}
+	</select>
+
 	<select id="img" parameterType="int"
 		resultType="com.udon.vo.ProductImageVo">
 		SELECT FILE_NAME, ORI_NAME, P_ID
 		FROM PRODUCT_IMAGE
-		WHERE P_ID = #{p_id}
+		WHERE
+		P_ID = #{p_id}
 	</select>
-	
+
 	<select id="post" parameterType="int"
 		resultType="com.udon.vo.PostVo">
-		SELECT P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE, REGION_ID, REG_DATE
+		SELECT P_ID, M_ID, M_NAME, TITLE, CONTENT, PRICE,
+		REGION_ID, REG_DATE
 		FROM POST
 		WHERE P_ID = #{p_id}
 	</select>
-	
+
 	<update id="updateMember" parameterType="map">
 		UPDATE MEMBER
-		SET MEMBER_ID=#{newMemberId}, MEMBER_PW=#{newMemberPw}, MEMBER_NAME=#{newMemberName}, REGION_ID=#{newRegionId}
-		WHERE MEMBER_ID=#{searchMemberId}
+		SET
+		MEMBER_ID=#{newMemberId}, MEMBER_PW=#{newMemberPw},
+		MEMBER_NAME=#{newMemberName}, REGION_ID=#{newRegionId}
+		WHERE
+		MEMBER_ID=#{searchMemberId}
 	</update>
+
+	<select id="regionList" resultType="com.udon.vo.PostVo"
+		parameterType="map">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, p.*
+		FROM (SELECT *
+		FROM Post
+		WHERE REGION_ID = #{region_id}
+		ORDER BY P_ID DESC
+		) p
+		)
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
 </mapper>
 
 

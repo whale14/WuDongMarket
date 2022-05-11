@@ -1,7 +1,11 @@
+<%@page import="com.udon.dao.DAO"%>
+<%@page import="com.udon.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt((String)session.getAttribute("member_id")));
+	pageContext.setAttribute("mvo", mvo);
 %>
 
 <!DOCTYPE html>
@@ -36,7 +40,7 @@
 					</div>
 				</div>
 				<textarea class="form-control mb-3" rows="5"
-					placeholder="서울특별시에(내 거주지역표시) 올릴 게시글 내용을 작성해주세요." name="content"></textarea>
+					placeholder="${mvo.region_id }에 올릴 게시글 내용을 작성해주세요." name="content"></textarea>
 				<input id="input_imgs" type="file" class="form-control"
 					name="file_name">
 				<div>
