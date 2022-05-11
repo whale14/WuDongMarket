@@ -67,6 +67,20 @@
 		POST
 		WHERE REGION_ID = #{region_id}
 	</select>
+	
+	<select id="searchCount" resultType="int"
+		parameterType="String">
+		SELECT COUNT(*) AS CNT FROM
+		POST
+		WHERE TITLE like '%' ||  #{keyword} || '%'
+	</select>
+	
+	<select id="regionSearchCount" resultType="int"
+		parameterType="map">
+		SELECT COUNT(*) AS CNT FROM
+		POST
+		WHERE REGION_ID = #{region_id} AND TITLE like '%' ||  #{keyword} || '%'
+	</select>
 
 	<select id="img" parameterType="int"
 		resultType="com.udon.vo.ProductImageVo">
@@ -100,6 +114,31 @@
 		FROM (SELECT *
 		FROM Post
 		WHERE REGION_ID = #{region_id}
+		ORDER BY P_ID DESC
+		) p
+		)
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	<select id="searchList" resultType="com.udon.vo.PostVo"
+		parameterType="map">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, p.*
+		FROM (SELECT *
+		FROM Post
+		WHERE TITLE like '%' ||  #{keyword} || '%'
+		ORDER BY P_ID DESC
+		) p
+		)
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="regionSearchList" resultType="com.udon.vo.PostVo"
+		parameterType="map">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, p.*
+		FROM (SELECT *
+		FROM Post
+		WHERE REGION_ID = #{region_id} AND TITLE like '%' ||  #{keyword} || '%'
 		ORDER BY P_ID DESC
 		) p
 		)

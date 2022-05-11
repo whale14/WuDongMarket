@@ -58,6 +58,23 @@ public class DAO {
 		return totalCount;
 	}
 	
+	public static int getSearchCount(String keyword) {
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("udon.searchCount", keyword);
+		ss.close();
+		return totalCount;
+	}
+	
+	public static int getRegionSearchCount(String keyword, String region_id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("region_id", region_id);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("udon.regionSearchCount", map);
+		ss.close();
+		return totalCount;
+	}
 	public static List<PostVo> getPostList(int begin, int end) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("begin", begin);
@@ -80,6 +97,32 @@ public class DAO {
 		ss.close();
 		return list;
 	}
+	
+	public static List<PostVo> getSearchList(int begin, int end, String keyword) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("keyword", keyword);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		List<PostVo> list = ss.selectList("udon.searchList", map);
+		ss.close();
+		return list;
+	}
+	
+	public static List<PostVo> getRegionSearchList(int begin, int end, String keyword, String region_id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("keyword", keyword);
+		map.put("region_id", region_id);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		List<PostVo> list = ss.selectList("udon.regionSearchList", map);
+		ss.close();
+		return list;
+	}
+	
 	public static ProductImageVo getImg(int p_id) {
 		SqlSession ss = DBService.getFactory().openSession();
 		ProductImageVo vo = ss.selectOne("udon.img", p_id);
