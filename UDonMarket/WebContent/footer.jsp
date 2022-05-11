@@ -4,7 +4,10 @@
 	<div class="container"
 		style="padding-top: 100px; padding-bottom: 100px;">
 		<div class="d-flex justify-content-between text-white">
-			<p class="fs-3 fw-bold">우동마켓</p>
+			<div>
+				<img alt="" src="./img/logo_white.png" style="width:50px">
+				<p class="fs-3 fw-bold mt-5">우동마켓</p>
+			</div>
 			<div>
 				<p class="fs-5 fw-bold">E-mail</p>
 				<p>김동욱-tldhsrkwhr11@naver.com</p>

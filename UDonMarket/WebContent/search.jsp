@@ -99,225 +99,136 @@ List<ProductImageVo> imgs;
 				pageContext.setAttribute("imgs", imgs);
 				pageContext.setAttribute("keyword", request.getParameter("keyword"));
 				%>
-				<div class="row mt-4">
+				<c:forEach var="vo" items="${posts }" varStatus="status">
 					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<c:forEach var="vo" items="${posts }" varStatus="status">
-						<div class="col-4">
-							<a href="detailpage.jsp?p_id=${vo.p_id }">
-								<div class="card mb-3 border-0">
-									<div class="card-photo">
-										<c:url
-											value="../../../../../../temp/${imgs[status.index].file_name }"
-											var="data" />
-										<img src="${data }" class="card-img-top" alt="...">
-									</div>
-									<div class="card-body d-flex justify-content-between">
-										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
-										<p class="card-text">${vo.price }</p>
-										<p class="card-text">
-											<small class="text-muted">${vo.reg_date }</small>
-										</p>
-									</div>
+						<a href="detailpage.jsp?p_id=${vo.p_id }">
+							<div class="card mb-3 border-0">
+								<div class="card-photo">
+									<img src="./uploadedFiles/${imgs[status.index].file_name }"
+										class="card-img-top" alt="...">
 								</div>
-							</a>
-						</div>
-					</c:forEach>
-				</div>
-			</c:if>
-			<c:if test="${member_id!=null }">
+								<div class="card-body d-flex justify-content-between">
+									<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
+									<p class="card-text">${vo.price }</p>
+									<p class="card-text">
+										<small class="text-muted">${vo.reg_date }</small>
+									</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+		</div>
+		</c:if>
+		<c:if test="${member_id!=null }">
 				내지역 중고물건 검색
 				<div class="row mt-4">
-					<%
-						Paging p = new Paging();
-					MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
-					p.setTotalRecord(DAO.getRegionSearchCount(request.getParameter("keyword"), mvo.getRegion_id()));
-					p.setTotalPage();
-					System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
-					System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
+				<%
+					Paging p = new Paging();
+				MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
+				p.setTotalRecord(DAO.getRegionSearchCount(request.getParameter("keyword"), mvo.getRegion_id()));
+				p.setTotalPage();
+				System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
+				System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
 
-					String cPage = request.getParameter("cPage");
-					if (cPage != null) {
-						p.setNowPage(Integer.parseInt(cPage));
-					}
-					System.out.println("> cPage : " + cPage);
-					System.out.println("> paging nowPage : " + p.getNowPage());
+				String cPage = request.getParameter("cPage");
+				if (cPage != null) {
+					p.setNowPage(Integer.parseInt(cPage));
+				}
+				System.out.println("> cPage : " + cPage);
+				System.out.println("> paging nowPage : " + p.getNowPage());
 
-					p.setEnd(p.getNowPage() * p.getNumPerPage());
-					p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				p.setEnd(p.getNowPage() * p.getNumPerPage());
+				p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
 
-					if (p.getEnd() > p.getTotalRecord()) {
-						p.setEnd(p.getTotalRecord());
-					}
-					System.out.println(">> 시작번호(begin) : " + p.getBegin());
-					System.out.println(">> 끝번호(end) : " + p.getEnd());
+				if (p.getEnd() > p.getTotalRecord()) {
+					p.setEnd(p.getTotalRecord());
+				}
+				System.out.println(">> 시작번호(begin) : " + p.getBegin());
+				System.out.println(">> 끝번호(end) : " + p.getEnd());
 
-					int nowPage = p.getNowPage();
-					int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
-					p.setBeginPage(beginPage);
-					p.setEndPage(beginPage + p.getPagePerBlock() - 1);
+				int nowPage = p.getNowPage();
+				int beginPage = (nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1;
+				p.setBeginPage(beginPage);
+				p.setEndPage(beginPage + p.getPagePerBlock() - 1);
 
-					if (p.getEndPage() > p.getTotalPage()) {
-						p.setEndPage(p.getTotalPage());
-					}
+				if (p.getEndPage() > p.getTotalPage()) {
+					p.setEndPage(p.getTotalPage());
+				}
 
-					System.out.println(">> beginPage : " + p.getBeginPage());
-					System.out.println(">> endPage : " + p.getEndPage());
+				System.out.println(">> beginPage : " + p.getBeginPage());
+				System.out.println(">> endPage : " + p.getEndPage());
 
-					pageContext.setAttribute("p", p);
-					%>
-					<%
-						posts = DAO.getRegionSearchList(p.getBegin(), p.getEnd(), request.getParameter("keyword"), mvo.getRegion_id());
-					System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
+				pageContext.setAttribute("p", p);
+				%>
+				<%
+					posts = DAO.getRegionSearchList(p.getBegin(), p.getEnd(), request.getParameter("keyword"), mvo.getRegion_id());
+				System.out.println(">> 현재페이지 글목록(list) : " + posts.toString());
 
-					pageContext.setAttribute("posts", posts);
+				pageContext.setAttribute("posts", posts);
 
-					imgs = new ArrayList<>();
-					for (PostVo pvo : posts) {
-						System.out.print(pvo.getP_id());
-						imgs.add(DAO.getImg(pvo.getP_id()));
-					}
+				imgs = new ArrayList<>();
+				for (PostVo pvo : posts) {
+					System.out.print(pvo.getP_id());
+					imgs.add(DAO.getImg(pvo.getP_id()));
+				}
 
-					pageContext.setAttribute("imgs", imgs);
-					pageContext.setAttribute("keyword", request.getParameter("keyword"));
-					%>
+				pageContext.setAttribute("imgs", imgs);
+				pageContext.setAttribute("keyword", request.getParameter("keyword"));
+				%>
+				<c:forEach var="vo" items="${posts }" varStatus="status">
 					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<c:forEach var="vo" items="${posts }" varStatus="status">
-						<div class="col-4">
-							<a href="detailpage.jsp?p_id=${vo.p_id }">
-								<div class="card mb-3 border-0">
-									<div class="card-photo">
-										<c:url
-											value="../../../../../../temp/${imgs[status.index].file_name }"
-											var="data" />
-										<img src="${data }" class="card-img-top" alt="...">
-									</div>
-									<div class="card-body d-flex justify-content-between">
-										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
-										<p class="card-text">${vo.price }</p>
-										<p class="card-text">
-											<small class="text-muted">${vo.reg_date }</small>
-										</p>
-									</div>
+						<a href="detailpage.jsp?p_id=${vo.p_id }">
+							<div class="card mb-3 border-0">
+								<div class="card-photo">
+									<img src="./uploadedFiles/${imgs[status.index].file_name }"
+										class="card-img-top" alt="...">
 								</div>
-							</a>
-						</div>
-					</c:forEach>
-				</div>
-			</c:if>
-			<nav aria-label="Main list pages">
-				<ul class="pagination pagination-lg justify-content-center">
-					<c:if test="${p.beginPage == 1 }">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">이전</a></li>
+								<div class="card-body d-flex justify-content-between">
+									<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
+									<p class="card-text">${vo.price }</p>
+									<p class="card-text">
+										<small class="text-muted">${vo.reg_date }</small>
+									</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
+		<nav aria-label="Main list pages">
+			<ul class="pagination pagination-lg justify-content-center">
+				<c:if test="${p.beginPage == 1 }">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">이전</a></li>
+				</c:if>
+				<c:if test="${p.beginPage != 1 }">
+					<li class="page-item "><a class="page-link"
+						href="index.jsp?cPage=${p.beginPage - 1 }">이전</a></li>
+				</c:if>
+
+				<c:forEach var="pageNo" begin="${p.beginPage }" end="${p.endPage }">
+					<c:if test="${pageNo == p.nowPage}">
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
 					</c:if>
-					<c:if test="${p.beginPage != 1 }">
-						<li class="page-item "><a class="page-link"
-							href="index.jsp?cPage=${p.beginPage - 1 }">이전</a></li>
+					<c:if test="${pageNo != p.nowPage}">
+						<li class="page-item"><a class="page-link"
+							href="index.jsp?cPage=${pageNo }">${pageNo }</a></li>
 					</c:if>
 
-					<c:forEach var="pageNo" begin="${p.beginPage }" end="${p.endPage }">
-						<c:if test="${pageNo == p.nowPage}">
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						</c:if>
-						<c:if test="${pageNo != p.nowPage}">
-							<li class="page-item"><a class="page-link"
-								href="index.jsp?cPage=${pageNo }">${pageNo }</a></li>
-						</c:if>
+				</c:forEach>
 
-					</c:forEach>
-
-					<c:if test="${p.endPage < p.totalPage }">
-						<li class="page-item "><a class="page-link"
-							href="index.jsp?cPage=${p.beginPage + 1 }">다음</a></li>
-					</c:if>
-					<c:if test="${p.endPage >= p.totalPage }">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">다음</a></li>
-					</c:if>
-				</ul>
-			</nav>
+				<c:if test="${p.endPage < p.totalPage }">
+					<li class="page-item "><a class="page-link"
+						href="index.jsp?cPage=${p.beginPage + 1 }">다음</a></li>
+				</c:if>
+				<c:if test="${p.endPage >= p.totalPage }">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">다음</a></li>
+				</c:if>
+			</ul>
+		</nav>
 		</div>
 	</main>
 	<jsp:include page="footer.jsp"></jsp:include>

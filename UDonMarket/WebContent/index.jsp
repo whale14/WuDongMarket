@@ -16,7 +16,7 @@ List<PostVo> posts;
 List<ProductImageVo> imgs;
 %>
 <%
-
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +58,7 @@ List<ProductImageVo> imgs;
 		<div class="container shadow rounded-3 mt-4 mb-4 bg-light">
 			<c:if test="${member_id==null }">
 				<%
-				Paging p = new Paging();
+					Paging p = new Paging();
 				p.setTotalRecord(DAO.getTotalCount());
 				p.setTotalPage();
 				System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
@@ -110,57 +110,13 @@ List<ProductImageVo> imgs;
 				%>
 				<h1 class="text-secondary">전지역 최근 올라온 중고물건</h1>
 				<div class="row mt-4">
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
 					<c:forEach var="vo" items="${posts }" varStatus="status">
 						<div class="col-4">
 							<a href="detailpage.jsp?p_id=${vo.p_id }">
 								<div class="card mb-3 border-0">
 									<div class="card-photo">
-										<c:url
-											value="../../../../../../temp/${imgs[status.index].file_name }"
-											var="data" />
-										<img src="${data }" class="card-img-top" alt="...">
+										<img src="./uploadedFiles/${imgs[status.index].file_name }"
+											class="card-img-top" alt="...">
 									</div>
 									<div class="card-body d-flex justify-content-between">
 										<h5 class="card-title w-50 text-start bold">${vo.title }</h5>
@@ -179,7 +135,7 @@ List<ProductImageVo> imgs;
 				<h1 class="text-secondary">내지역 최근 올라온 중고물건</h1>
 				<div class="row mt-4">
 					<%
-					MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
+						MemberVo mvo = DAO.selectMemberWhereMemberId(Integer.parseInt(member_id));
 					Paging p = new Paging();
 					p.setTotalRecord(DAO.getMyRegionCount(mvo.getRegion_id()));
 					p.setTotalPage();
@@ -230,54 +186,12 @@ List<ProductImageVo> imgs;
 
 					pageContext.setAttribute("imgs", imgs);
 					%>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card mb-3 border-0">
-							<div class="card-photo">
-								<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
-							</div>
-							<div class="card-body d-flex justify-content-between">
-								<h5 class="card-title w-50 text-start bold">제목</h5>
-								<p class="card-text">가격</p>
-								<p class="card-text">
-									<small class="text-muted">등록일</small>
-								</p>
-							</div>
-						</div>
-					</div>
 					<c:forEach var="vo" items="${posts }" varStatus="status">
 						<div class="col-4">
 							<a href="detailpage.jsp?p_id=${vo.p_id }">
 								<div class="card mb-3 border-0">
 									<div class="card-photo">
-										<img src="c:/temp/${imgs[status.index].file_name }"
+										<img src="./uploadedFiles/${imgs[status.index].file_name }"
 											class="card-img-top" alt="...">
 									</div>
 									<div class="card-body d-flex justify-content-between">

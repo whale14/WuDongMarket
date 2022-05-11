@@ -13,7 +13,7 @@
 	System.out.print(member_id);
 	
 	ServletContext context = getServletContext();
-	String path = "c:/temp";
+	String path = "C:/Users/whale/IdeaProjects/WuDongMarket/UDonMarket/WebContent/uploadedFiles";
 	
 	MultipartRequest mr = new MultipartRequest(request, path, (10*1024*1024), "UTF-8", new DefaultFileRenamePolicy());
 	

@@ -1,3 +1,4 @@
+<%@page import="com.udon.vo.ProductImageVo"%>
 <%@page import="com.udon.dao.DAO"%>
 <%@page import="com.udon.vo.PostVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,7 +9,9 @@
 %>
 <%
 	PostVo pvo = DAO.getPost(Integer.parseInt(request.getParameter("p_id")));
-pageContext.setAttribute("pvo", pvo);
+	ProductImageVo ivo = DAO.getImg(Integer.parseInt(request.getParameter("p_id")));
+	pageContext.setAttribute("pvo", pvo);
+	pageContext.setAttribute("ivo", ivo);
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +41,7 @@ pageContext.setAttribute("pvo", pvo);
 		<div class="container shadow rounded-3 mt-4 mb-4 w-50 bg-light">
 			<div class="card mb-3 border-0">
 				<div class="card-photo">
-					<img src="./img/예시이미지.jpg" class="card-img-top" alt="...">
+					<img src="./uploadedFiles/${ivo.file_name }" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
